@@ -9,7 +9,7 @@ inherit distutils-r1
 
 DESCRIPTION="A Python publish-subcribe library"
 HOMEPAGE="https://github.com/schollii/pypubsub/"
-SRC_URI="https://github.com/schollii/pypubsub/archive/v${PV}rc1.tar.gz -> ${P}.tar.gz"
+SRC_URI="https://github.com/schollii/pypubsub/archive/rel_${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="BSD"
 SLOT="3"
@@ -25,4 +25,4 @@ python_test() {
 	pytest -vv || die
 }
 
-S="${WORKDIR}/${PN}-${PV}rc1"
+S="${WORKDIR}/${PN}-rel_${PV}"
