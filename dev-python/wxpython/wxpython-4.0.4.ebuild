@@ -40,10 +40,19 @@ DEPEND="
 		${RDEPEND}
 		dev-python/pytest[${PYTHON_USEDEP}]
 	)
+	>=media-libs/freeglut-3.0.0
+	media-libs/gstreamer
+	media-libs/libsdl2
+	media-libs/tiff
+	virtual/jpeg
+	x11-libs/gtk+:3
+	x11-libs/libnotify
+	x11-libs/libSM
+	x11-libs/libXtst
+	net-libs/webkit-gtk
 "
 
 PATCHES=(
-	"${FILESDIR}/${PN}"-4.0.3-webkit.patch
 	"${FILESDIR}/${PN}"-4.0.3-parallel.patch
 )
 
