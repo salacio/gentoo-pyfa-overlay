@@ -1,6 +1,8 @@
 # Gentoo Pyfa Overlay
 
-This is a Gentoo overlay for the newest versions of Pyfa and dependencies that are not upstream yet.
+Do to missing dependencies in the main Gentoo repository the Pyfa versions it provides are very old
+and stuck on the 1.x versions. This overlay attempts to provide the most recent version of Pyfa and
+all missing dependencies that are not upstream yet.
 
 To use this overlay add the following config to /etc/portage/repos.conf/pyfa.conf
 
