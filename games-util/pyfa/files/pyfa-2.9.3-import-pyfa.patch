@@ -21,8 +21,8 @@ index d73ef097..dbf73db2 100755
  import sys
 +sys.path.append(os.path.join("%%SITEDIR%%", "pyfa"))
  from optparse import AmbiguousOptionError, BadOptionError, OptionParser
- 
+
  import config
--- 
+--
 2.21.0
 
