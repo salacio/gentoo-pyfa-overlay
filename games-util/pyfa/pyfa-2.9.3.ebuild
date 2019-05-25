@@ -29,7 +29,7 @@ RDEPEND="
 	dev-python/python-dateutil[${PYTHON_USEDEP}]
 	>=dev-python/requests-2.0.0[${PYTHON_USEDEP}]
 	>=dev-python/sqlalchemy-1.3.0[${PYTHON_USEDEP}]
-	>=dev-python/wxpython-4.0.4[${PYTHON_USEDEP}]
+	>=dev-python/wxpython-4.0.4[webkit,${PYTHON_USEDEP}]
 	>=dev-python/cryptography-2.3[${PYTHON_USEDEP}]
 	>=dev-python/roman-2.0.0[${PYTHON_USEDEP}]
 	>=dev-python/markdown2-2.3.0[${PYTHON_USEDEP}]
