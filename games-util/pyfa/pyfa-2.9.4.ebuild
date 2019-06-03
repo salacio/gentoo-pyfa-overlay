@@ -1,11 +1,11 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI="7"
 PYTHON_COMPAT=( python3_6 )
 PYTHON_REQ_USE="sqlite,threads"
 
-inherit desktop eutils gnome2-utils python-r1
+inherit desktop eutils python-r1 xdg-utils
 
 DESCRIPTION="Python Fitting Assistant - a ship fitting application for EVE Online"
 HOMEPAGE="https://github.com/pyfa-org/Pyfa"
@@ -25,34 +25,35 @@ IUSE="+graph"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 RDEPEND="
+	>=dev-python/beautifulsoup-4.6.0[${PYTHON_USEDEP}]
+	>=dev-python/cryptography-2.3[${PYTHON_USEDEP}]
 	>=dev-python/logbook-1.0.0[${PYTHON_USEDEP}]
+	>=dev-python/markdown2-2.3.0[${PYTHON_USEDEP}]
 	dev-python/python-dateutil[${PYTHON_USEDEP}]
+	>=dev-python/pyyaml-5.1[${PYTHON_USEDEP}]
 	>=dev-python/requests-2.0.0[${PYTHON_USEDEP}]
+	>=dev-python/roman-2.0.0[${PYTHON_USEDEP}]
 	>=dev-python/sqlalchemy-1.3.0[${PYTHON_USEDEP}]
 	>=dev-python/wxpython-4.0.4[webkit,${PYTHON_USEDEP}]
-	>=dev-python/cryptography-2.3[${PYTHON_USEDEP}]
-	>=dev-python/roman-2.0.0[${PYTHON_USEDEP}]
-	>=dev-python/markdown2-2.3.0[${PYTHON_USEDEP}]
-	>=dev-python/beautifulsoup-4.6.0[${PYTHON_USEDEP}]
-	>=dev-python/pyyaml-5.1[${PYTHON_USEDEP}]
 	graph? (
 		>=dev-python/matplotlib-2.0.0[wxwidgets,${PYTHON_USEDEP}]
 		dev-python/numpy[${PYTHON_USEDEP}] )
 	${PYTHON_DEPS}"
-DEPEND="app-arch/zip"
+BDEPEND="app-arch/zip"
+
+PATCHES=(
+	# load images from separate staticdata directory
+	"${FILESDIR}/${PN}-2.9.3-staticdata.patch"
+	# fix import path in the main script for systemwide installation
+	"${FILESDIR}/${PN}-2.9.3-import-pyfa.patch"
+	)
 
 [[ ${PV} = 9999 ]] || S=${WORKDIR}/Pyfa-${PV}
 
 src_prepare() {
 	# get rid of CRLF line endings introduced in 1.1.10 so patches work
 	edos2unix config.py pyfa.py gui/bitmap_loader.py service/settings.py
-
-	# load gameDB and images from separate staticdata directory
-	eapply "${FILESDIR}/${PN}-2.9.3-staticdata.patch"
-
-	# fix import path in the main script for systemwide installation
-	eapply "${FILESDIR}/${PN}-2.9.3-import-pyfa.patch"
-
+	default
 	eapply_user
 
 	# make python recognize pyfa as a package
@@ -94,9 +95,9 @@ src_install() {
 }
 
 pkg_postinst() {
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
 }
 
 pkg_postrm() {
-	gnome2_icon_cache_update
+	xdg_icon_cache_update
 }
