@@ -53,8 +53,8 @@ PATCHES=(
 src_prepare() {
 	# get rid of CRLF line endings introduced in 1.1.10 so patches work
 	edos2unix config.py pyfa.py gui/bitmap_loader.py service/settings.py
+
 	default
-	eapply_user
 
 	# make python recognize pyfa as a package
 	touch __init__.py || die
