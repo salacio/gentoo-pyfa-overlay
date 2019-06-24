@@ -29,6 +29,7 @@ RDEPEND="
 	>=dev-python/cryptography-2.3[${PYTHON_USEDEP}]
 	>=dev-python/logbook-1.0.0[${PYTHON_USEDEP}]
 	>=dev-python/markdown2-2.3.0[${PYTHON_USEDEP}]
+	>=dev-python/packaging-16.8[${PYTHON_USEDEP}]
 	dev-python/python-dateutil[${PYTHON_USEDEP}]
 	>=dev-python/pyyaml-5.1[${PYTHON_USEDEP}]
 	>=dev-python/requests-2.0.0[${PYTHON_USEDEP}]
