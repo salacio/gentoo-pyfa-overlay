@@ -16,10 +16,10 @@ SLOT="0"
 if [[ ${PV} = 9999 ]]; then
 	EGIT_REPO_URI="https://github.com/pyfa-org/Pyfa.git"
 	inherit git-r3
-	KEYWORDS=""
 else
 	SRC_URI="https://github.com/pyfa-org/Pyfa/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
+	S=${WORKDIR}/Pyfa-${PV}
 fi
 IUSE="+graph"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
@@ -48,8 +48,6 @@ PATCHES=(
 	# fix import path in the main script for systemwide installation
 	"${FILESDIR}/${PN}-2.9.3-import-pyfa.patch"
 	)
-
-[[ ${PV} = 9999 ]] || S=${WORKDIR}/Pyfa-${PV}
 
 src_prepare() {
 	# get rid of CRLF line endings introduced in 1.1.10 so patches work
