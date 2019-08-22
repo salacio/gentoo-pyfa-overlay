@@ -44,7 +44,7 @@ BDEPEND="app-arch/zip"
 
 PATCHES=(
 	# load images from separate staticdata directory
-	"${FILESDIR}/${PN}-2.9.3-staticdata.patch"
+	"${FILESDIR}/${PN}-2.10.0-staticdata.patch"
 	# fix import path in the main script for systemwide installation
 	"${FILESDIR}/${PN}-2.9.3-import-pyfa.patch"
 	)
@@ -67,8 +67,8 @@ src_prepare() {
 
 src_install() {
 	python_moduleinto ${PN}
-	python_domodule eos gui service utils config*.py __init__.py version.yml
-	python_domodule configforced.py
+	python_domodule eos gui service utils graphs
+	python_domodule config*.py __init__.py version.yml configforced.py
 	python_doscript pyfa
 
 	insinto /usr/share/${PN}
