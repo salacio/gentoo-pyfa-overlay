@@ -5,7 +5,7 @@ EAPI="7"
 PYTHON_COMPAT=( python3_6 )
 PYTHON_REQ_USE="sqlite,threads"
 
-inherit desktop eutils python-r1 xdg-utils
+inherit desktop eutils python-single-r1 xdg-utils
 
 DESCRIPTION="Python Fitting Assistant - a ship fitting application for EVE Online"
 HOMEPAGE="https://github.com/pyfa-org/Pyfa"
@@ -58,25 +58,18 @@ src_prepare() {
 	# make python recognize pyfa as a package
 	touch __init__.py || die
 
-	pyfa_make_configforced() {
-		mkdir -p "${BUILD_DIR}" || die
-		sed -e "s:%%SITEDIR%%:$(python_get_sitedir):" \
-			-e "s:%%EPREFIX%%:${EPREFIX}:" \
-			"${FILESDIR}/configforced-1.15.1.py" > "${BUILD_DIR}/configforced.py" || die
-		sed -e "s:%%SITEDIR%%:$(python_get_sitedir):" \
-			pyfa.py > "${BUILD_DIR}/pyfa" || die
-	}
-	python_foreach_impl pyfa_make_configforced
+	sed -e "s:%%SITEDIR%%:$(python_get_sitedir):" \
+		-e "s:%%EPREFIX%%:${EPREFIX}:" \
+		"${FILESDIR}/configforced-1.15.1.py" > configforced.py || die
+	sed -e "s:%%SITEDIR%%:$(python_get_sitedir):" \
+		pyfa.py > pyfa || die
 }
 
 src_install() {
-	pyfa_py_install() {
-		python_moduleinto ${PN}
-		python_domodule eos gui service utils config*.py __init__.py version.yml
-		python_domodule "${BUILD_DIR}/configforced.py"
-		python_doscript "${BUILD_DIR}/pyfa"
-	}
-	python_foreach_impl pyfa_py_install
+	python_moduleinto ${PN}
+	python_domodule eos gui service utils config*.py __init__.py version.yml
+	python_domodule configforced.py
+	python_doscript pyfa
 
 	insinto /usr/share/${PN}
 	doins eve.db
