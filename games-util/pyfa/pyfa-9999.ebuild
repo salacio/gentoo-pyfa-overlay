@@ -43,8 +43,6 @@ RDEPEND="
 BDEPEND="app-arch/zip"
 
 PATCHES=(
-	# load images from separate staticdata directory
-	"${FILESDIR}/${PN}-2.10.0-staticdata.patch"
 	# fix import path in the main script for systemwide installation
 	"${FILESDIR}/${PN}-2.9.3-import-pyfa.patch"
 	)
