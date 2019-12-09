@@ -23,6 +23,7 @@ else
 fi
 IUSE="+graph"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
+RESTRICT="mirror bindist"
 
 DEPEND="
 	>=dev-python/cryptography-2.3[${PYTHON_USEDEP}]

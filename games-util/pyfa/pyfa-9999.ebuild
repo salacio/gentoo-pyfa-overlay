@@ -23,6 +23,7 @@ else
 fi
 IUSE="+graph"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
+RESTRICT="mirror bindist"
 
 RDEPEND="
 	>=dev-python/beautifulsoup-4.6.0[${PYTHON_USEDEP}]
