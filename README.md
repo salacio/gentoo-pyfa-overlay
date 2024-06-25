@@ -2,6 +2,14 @@
 
 The most recent [pyfa](https://github.com/pyfa-org/Pyfa) versions for Gentoo.
 
+## Add repo with eselect repository (recommended)
+
+Install app-eselect/repository if it is not already installed
+
+    emerge -av --noreplace app-eselect/repository
+    eselect repository enable pyfa
+    emaint sync -r pyfa
+
 ## Add repo with layman
 
 To add the pyfa overlay you can simply use layman:
